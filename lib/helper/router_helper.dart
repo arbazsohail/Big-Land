@@ -229,6 +229,15 @@ class RouterHelper {
               : utf8.decode(base64Url.decode(state.uri.queryParameters['data'] ?? '')),
         ));
       }),
+      // GoRoute(path: verify, builder: (context, state) {
+      //   return _routeHandler(context, VerificationScreen(
+      //     fromSignUp: state.uri.queryParameters['page'] == 'login',
+      //     emailAddress: jsonDecode(state.uri.queryParameters['email'] ?? ''),
+      //     session: state.uri.queryParameters['data'] == 'null'
+      //         ? null
+      //         : utf8.decode(base64Url.decode(state.uri.queryParameters['data'] ?? '')),
+      //   ));
+      // }),
       GoRoute(path: forgotPassScreen, builder: (context, state) => _routeHandler(context, const ForgotPasswordScreen())),
       GoRoute(path: createNewPassScreen, builder: (context, state) => _routeHandler(context, CreateNewPasswordScreen(
         emailOrPhone: Uri.decodeComponent(state.uri.queryParameters['email_or_phone'] ?? ''),

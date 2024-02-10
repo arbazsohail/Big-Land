@@ -389,11 +389,18 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                           //       .saveUserToken(temporaryToken!);
                                           //   await authRepo!.updateDeviceToken();
                                           // }
-                                          await authRepo!.sendOtpToPhone(
-                                              email, status.message!);
-                                          RouterHelper.getMainRoute(
-                                              action: RouteAction
-                                                  .pushNamedAndRemoveUntil);
+                                          await authRepo!
+                                              .sendOtpToPhone(
+                                                  email, status.message!)
+                                              .then((value) {
+                                            RouterHelper.getMainRoute(
+                                                action: RouteAction
+                                                    .pushNamedAndRemoveUntil);
+                                          });
+
+                                          // RouterHelper.getMainRoute(
+                                          //     action: RouteAction
+                                          //         .pushNamedAndRemoveUntil);
                                         } else if (authProvider
                                                 .isCheckedPhone &&
                                             (config.phoneVerification! ||

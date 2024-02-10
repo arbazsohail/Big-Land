@@ -214,10 +214,10 @@ class AuthRepo {
   }
 
   Future<ApiResponse> verifyPhone(
-      String phone, String otp) async {
+      String phone, String token) async {
     try {
       Response response = await dioClient!.post(AppConstants.verifyPhoneUrl,
-          data: {"phone": phone.trim(), "otp": otp});
+          data: {"phone": phone.trim(), "token": token});
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
