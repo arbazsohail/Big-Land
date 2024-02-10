@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "284414687497",
+    "project_id": "bigland-food-app",
+    "storage_bucket": "bigland-food-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284414687497:android:be9cbccce2489d105cbbd8",
+        "android_client_info": {
+          "package_name": "app.bigland.dbapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZXF3pKK0mkO5y9bJDdtyFZaJc3kxODf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284414687497:android:d7d7ab33fc9ac05f5cbbd8",
+        "android_client_info": {
+          "package_name": "app.bigland.userapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZXF3pKK0mkO5y9bJDdtyFZaJc3kxODf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
