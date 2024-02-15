@@ -175,7 +175,9 @@ class AuthProvider with ChangeNotifier {
   set setForgetPasswordLoading(bool value) => _isForgotPasswordLoading = value;
 
   Future<ResponseModel?> forgetPassword(
-      {required ConfigModel config, required String phoneOrEmail}) async {
+      {required ConfigModel config,
+      required String phoneOrEmail,
+      required String countryCode}) async {
     ResponseModel? responseModel;
     _isForgotPasswordLoading = true;
     notifyListeners();
@@ -184,7 +186,7 @@ class AuthProvider with ChangeNotifier {
     //     config.customerVerification?.type == 'firebase') {
     //   await firebaseVerifyPhoneNumber(phoneOrEmail, isForgetPassword: true);
     // } else {
-    responseModel = await _forgetPassword(phoneOrEmail);
+    responseModel = await _forgetPassword(phoneOrEmail, countryCode);
     // }
     _isForgotPasswordLoading = false;
     notifyListeners();
@@ -192,12 +194,14 @@ class AuthProvider with ChangeNotifier {
     return responseModel;
   }
 
-  Future<ResponseModel> _forgetPassword(String email) async {
+  Future<ResponseModel> _forgetPassword(
+      String email, String countryCode) async {
     _isForgotPasswordLoading = true;
     resendButtonLoading = true;
     notifyListeners();
 
-    ApiResponse apiResponse = await authRepo!.forgetPassword(email);
+    ApiResponse apiResponse =
+        await authRepo!.forgetPassword(email, countryCode);
     ResponseModel responseModel;
 
     if (apiResponse.response != null &&

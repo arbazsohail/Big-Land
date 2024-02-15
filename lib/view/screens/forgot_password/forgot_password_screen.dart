@@ -192,13 +192,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                     btnTxt: getTranslated('send', context),
                                     onTap: () async {
                                       String? phoneOrEmail;
+                                      String? countryCode;
 
                                       if (configModel.phoneVerification!) {
                                         if (_phoneNumberController!.text
                                             .trim()
                                             .isNotEmpty) {
-                                          phoneOrEmail =
-                                              '$_countryCode${_phoneNumberController!.text.trim()}';
+                                          phoneOrEmail = _phoneNumberController!
+                                              .text
+                                              .trim();
+                                          countryCode = _countryCode;
                                         } else {
                                           showCustomSnackBar(getTranslated(
                                               'enter_phone_number', context));
@@ -219,12 +222,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                       ResponseModel? response = await auth
                                           .forgetPassword(
                                               config: configModel,
-                                              phoneOrEmail: phoneOrEmail!)
+                                              phoneOrEmail: phoneOrEmail!,
+                                              countryCode: countryCode!)
                                           .then((value) async {
                                         if (value!.isSuccess) {
                                           RouterHelper.getVerifyRoute(
                                               'forget-password', phoneOrEmail!,
-                                              countryCode: _countryCode);
+                                              countryCode: countryCode!);
                                         } else {
                                           showCustomSnackBar(value.message);
                                         }

@@ -18,6 +18,7 @@ class AuthRepo {
   AuthRepo({required this.dioClient, required this.sharedPreferences});
 
   Future<ApiResponse> registration(SignUpModel signUpModel) async {
+    print(signUpModel.toJson());
     try {
       Response response = await dioClient!.post(
         AppConstants.registerUri,
@@ -31,11 +32,11 @@ class AuthRepo {
 
   Future<ApiResponse> login(
       {String? email, String? password, String? code}) async {
-    print(email);
     try {
+      print(email! + password! + code!);
       Response response = await dioClient!.post(
         AppConstants.loginUri,
-        data: {"email": email, "password": password, "code": code},
+        data: {"email_or_phone": email, "password": password, "code": code},
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -105,12 +106,10 @@ class AuthRepo {
   }
 
   // for forgot password
-  Future<ApiResponse> forgetPassword(String email) async {
+  Future<ApiResponse> forgetPassword(String email, String code) async {
     try {
-      Response response =
-          await dioClient!.post(AppConstants.forgetPasswordUri, data: {
-        "email_or_phone": email,
-      });
+      Response response = await dioClient!.post(AppConstants.forgetPasswordUri,
+          data: {"email_or_phone": email, "code": code});
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -120,11 +119,7 @@ class AuthRepo {
   Future<ApiResponse> verifyToken(String email, String token) async {
     try {
       Response response = await dioClient!.post(AppConstants.verifyTokenUri,
-          data: {
-            "email_or_phone": email,
-            "email": email,
-            "reset_token": token
-          });
+          data: {"email_or_phone": email, "reset_token": token});
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

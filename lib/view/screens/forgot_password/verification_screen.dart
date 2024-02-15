@@ -212,7 +212,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                                 .forgetPassword(
                                                     config: config,
                                                     phoneOrEmail:
-                                                        widget.emailAddress)
+                                                        widget.emailAddress,
+                                                    countryCode:
+                                                        widget.countryCode!)
                                                 .then((value) {
                                               authProvider.startVerifyTimer();
 
@@ -349,6 +351,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                             .then(
                                           (value) {
                                             if (value.isSuccess) {
+                                              showCustomSnackBar(
+                                                  value.message.toString());
                                               RouterHelper.getNewPassRoute(
                                                   widget.emailAddress,
                                                   authProvider.verificationCode,

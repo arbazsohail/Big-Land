@@ -131,7 +131,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
                       !auth.isForgotPasswordLoading
                           ? CustomButton(
                               btnTxt: getTranslated('save', context),
-                              onTap: () {
+                              onTap: () async {
                                 if (_passwordController.text.isEmpty) {
                                   showCustomSnackBar(
                                       getTranslated('enter_password', context));
@@ -148,7 +148,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
                                   showCustomSnackBar(getTranslated(
                                       'password_did_not_match', context));
                                 } else {
-                                  auth
+                                  await auth
                                       .resetPassword(
                                           emailOrPhone,
                                           resetToken,
@@ -156,9 +156,13 @@ class CreateNewPasswordScreen extends StatelessWidget {
                                           _confirmPasswordController.text)
                                       .then((value) async {
                                     if (value.isSuccess) {
+                                      showCustomSnackBar(value.message);
                                       RouterHelper.getLoginRoute(
                                           action: RouteAction
                                               .pushNamedAndRemoveUntil);
+                                      _passwordController.clear();
+                                      _confirmPasswordController.clear();
+
                                       // await auth
                                       //     .login(
                                       //   emailOrPhone,

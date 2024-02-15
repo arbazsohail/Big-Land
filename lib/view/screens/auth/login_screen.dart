@@ -277,6 +277,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 InkWell(
                                   onTap: () {
+                                    _emailController!.clear();
+                                    _passwordController!.clear();
                                     RouterHelper.getForgetPassRoute();
                                   },
                                   child: Padding(

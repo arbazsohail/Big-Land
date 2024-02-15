@@ -366,10 +366,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                         fName: firstName,
                                         lName: lastName,
                                         email: email,
-                                        code: _countryDialCode,
+                                        code: CountryCode.fromCountryCode(
+                                                _countryDialCode!)
+                                            .dialCode,
                                         password: password,
-                                        phone:
-                                            '${CountryCode.fromCountryCode(_countryDialCode!).dialCode}$number',
+                                        phone: number,
                                         referralCode:
                                             _referTextController.text.trim(),
                                       );
