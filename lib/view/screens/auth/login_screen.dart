@@ -2,6 +2,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant/data/model/response/config_model.dart';
 import 'package:flutter_restaurant/data/model/response/user_log_data.dart';
+import 'package:flutter_restaurant/data/repository/auth_repo.dart';
 import 'package:flutter_restaurant/helper/responsive_helper.dart';
 import 'package:flutter_restaurant/localization/language_constrants.dart';
 import 'package:flutter_restaurant/provider/auth_provider.dart';
@@ -18,6 +19,7 @@ import 'package:flutter_restaurant/view/base/footer_view.dart';
 import 'package:flutter_restaurant/view/base/web_app_bar.dart';
 import 'package:flutter_restaurant/view/screens/auth/widget/code_picker_widget.dart';
 import 'package:flutter_restaurant/view/screens/auth/widget/social_login_widget.dart';
+import 'package:flutter_restaurant/view/screens/forgot_password/verification_screen.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -34,6 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController? _passwordController;
   GlobalKey<FormState>? _formKeyLogin;
   String? countryCode;
+  AuthRepo? authRepo;
 
   @override
   void initState() {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant/data/model/response/config_model.dart';
 import 'package:flutter_restaurant/data/model/response/signup_model.dart';
+import 'package:flutter_restaurant/data/repository/auth_repo.dart';
 import 'package:flutter_restaurant/helper/app_mode.dart';
 import 'package:flutter_restaurant/helper/email_checker.dart';
 import 'package:flutter_restaurant/helper/responsive_helper.dart';
