@@ -366,6 +366,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                         fName: firstName,
                                         lName: lastName,
                                         email: email,
+                                        code: _countryDialCode,
                                         password: password,
                                         phone:
                                             '${CountryCode.fromCountryCode(_countryDialCode!).dialCode}$number',
@@ -376,24 +377,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                           .registration(signUpModel, config)
                                           .then((status) async {
                                         if (status.isSuccess) {
-                                          // var tempToken =
-                                          // try {
-                                          //   temporaryToken =
-                                          //       map["temporary_token"];
-                                          // } catch (e) {
-                                          //   //
-                                          // }
-                                          // if (token != null &&
-                                          //     token.isNotEmpty) {
-                                          //   authRepo!
-                                          //       .saveUserToken(temporaryToken!);
-                                          //   await authRepo!.updateDeviceToken();
-                                          // }
-                                          await authRepo!.sendOtpToPhone(
-                                              email, status.message!);
-                                          RouterHelper.getMainRoute(
-                                              action: RouteAction
-                                                  .pushNamedAndRemoveUntil);
+                                          RouterHelper.getVerifyRoute('sign-up',
+                                              '${config.phoneVerification! ? signUpModel.phone : signUpModel.email}');
+                                          // RouterHelper.getMainRoute(
+                                          //     action: RouteAction
+                                          //         .pushNamedAndRemoveUntil);
                                         } else if (authProvider
                                                 .isCheckedPhone &&
                                             (config.phoneVerification! ||

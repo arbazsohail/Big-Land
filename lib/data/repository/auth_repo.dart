@@ -29,11 +29,13 @@ class AuthRepo {
     }
   }
 
-  Future<ApiResponse> login({String? email, String? password}) async {
+  Future<ApiResponse> login(
+      {String? email, String? password, String? code}) async {
+    print(email);
     try {
       Response response = await dioClient!.post(
         AppConstants.loginUri,
-        data: {"email_or_phone": email, "email": email, "password": password},
+        data: {"email": email, "password": password, "code": code},
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -105,8 +107,10 @@ class AuthRepo {
   // for forgot password
   Future<ApiResponse> forgetPassword(String email) async {
     try {
-      Response response = await dioClient!.post(AppConstants.forgetPasswordUri,
-          data: {"email_or_phone": email, "email": email});
+      Response response =
+          await dioClient!.post(AppConstants.forgetPasswordUri, data: {
+        "email_or_phone": email,
+      });
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -170,11 +174,16 @@ class AuthRepo {
 
   //verify phone number
 
-  Future<ApiResponse> checkPhone(String phone) async {
+  Future<ApiResponse> sendOTP(
+      String phone, String tempToken, String email, String code) async {
     try {
-      Response response = await dioClient!.post(
-          AppConstants.baseUrl + AppConstants.checkPhoneUri + phone,
-          data: {"phone": phone});
+      Response response = await dioClient!
+          .post(AppConstants.baseUrl + AppConstants.sendOtpToPhone, data: {
+        "phone": phone,
+        "temporary_token": tempToken,
+        "email": email,
+        "code": code
+      });
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -213,11 +222,11 @@ class AuthRepo {
     }
   }
 
-  Future<ApiResponse> verifyPhone(
-      String phone, String otp) async {
+  Future<ApiResponse> verifyPhone(String phone, String otp) async {
+    print(phone);
     try {
       Response response = await dioClient!.post(AppConstants.verifyPhoneUrl,
-          data: {"phone": phone.trim(), "otp": otp});
+          data: {"phone": phone.trim(), "code": otp, "token": otp});
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

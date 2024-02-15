@@ -5,8 +5,16 @@ class SignUpModel {
   String? email;
   String? password;
   String? referralCode;
+  String? code;
 
-  SignUpModel({this.fName, this.lName, this.phone, this.email='', this.password, this.referralCode = ''});
+  SignUpModel(
+      {this.fName,
+      this.lName,
+      this.phone,
+      this.email = '',
+      this.password,
+      this.code,
+      this.referralCode = ''});
 
   SignUpModel.fromJson(Map<String, dynamic> json) {
     fName = json['f_name'];
@@ -14,6 +22,7 @@ class SignUpModel {
     phone = json['phone'];
     email = json['email'];
     password = json['password'];
+    code = json['code'];
     referralCode = json['referral_code'];
   }
 
@@ -25,6 +34,7 @@ class SignUpModel {
     data['email'] = email;
     data['password'] = password;
     data['referral_code'] = referralCode;
+    data['code'] = code;
     return data;
   }
 }

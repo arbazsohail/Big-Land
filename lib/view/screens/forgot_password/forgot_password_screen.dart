@@ -38,43 +38,64 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     _emailController = TextEditingController();
     _phoneNumberController = TextEditingController();
 
-    final AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final AuthProvider authProvider =
+        Provider.of<AuthProvider>(context, listen: false);
 
     authProvider.clearVerificationMessage();
     authProvider.setIsLoading = false;
     authProvider.setIsPhoneVerificationButttonLoading = false;
 
-    _countryCode = CountryCode.fromCountryCode(Provider.of<SplashProvider>(context, listen: false).configModel!.countryCode!).dialCode;
+    _countryCode = CountryCode.fromCountryCode(
+            Provider.of<SplashProvider>(context, listen: false)
+                .configModel!
+                .countryCode!)
+        .dialCode;
   }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    final ConfigModel configModel =  Provider.of<SplashProvider>(context, listen: false).configModel!;
+    final ConfigModel configModel =
+        Provider.of<SplashProvider>(context, listen: false).configModel!;
 
     return Scaffold(
-      appBar: (ResponsiveHelper.isDesktop(context) ? const PreferredSize(preferredSize: Size.fromHeight(100), child: WebAppBar()) : CustomAppBar(context: context, title: getTranslated('forgot_password', context))) as PreferredSizeWidget?,
-      body: Center(child: SingleChildScrollView(
+      appBar: (ResponsiveHelper.isDesktop(context)
+              ? const PreferredSize(
+                  preferredSize: Size.fromHeight(100), child: WebAppBar())
+              : CustomAppBar(
+                  context: context,
+                  title: getTranslated('forgot_password', context)))
+          as PreferredSizeWidget?,
+      body: Center(
+          child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(children: [
-          Center(child: Padding(
+          Center(
+              child: Padding(
             padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
             child: Container(
               width: width > 700 ? 700 : width,
-              padding: width > 700 ? const EdgeInsets.all(Dimensions.paddingSizeDefault) : null,
-              decoration: width > 700 ? BoxDecoration(
-                color: Theme.of(context).canvasColor, borderRadius: BorderRadius.circular(10),
-                boxShadow: [BoxShadow(color: Theme.of(context).shadowColor, blurRadius: 5, spreadRadius: 1)],
-              ) : null,
+              padding: width > 700
+                  ? const EdgeInsets.all(Dimensions.paddingSizeDefault)
+                  : null,
+              decoration: width > 700
+                  ? BoxDecoration(
+                      color: Theme.of(context).canvasColor,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Theme.of(context).shadowColor,
+                            blurRadius: 5,
+                            spreadRadius: 1)
+                      ],
+                    )
+                  : null,
               child: Consumer<AuthProvider>(
                 builder: (context, auth, child) {
-
-
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 55),
-                      
                       Center(
                         child: Image.asset(
                           Images.closeLock,
@@ -83,101 +104,147 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         ),
                       ),
                       const SizedBox(height: 40),
-                      
-                      configModel.phoneVerification!?
-                      Center(child: Text(
-                        getTranslated('please_enter_your_mobile_number_to', context)!,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
-                      )):
-                      Center(
-                          child: Text(
-                            getTranslated('please_enter_your_number_to', context)!,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
-                          )),
-
+                      configModel.phoneVerification!
+                          ? Center(
+                              child: Text(
+                              getTranslated(
+                                  'please_enter_your_mobile_number_to',
+                                  context)!,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayMedium!
+                                  .copyWith(
+                                      color:
+                                          ColorResources.getHintColor(context)),
+                            ))
+                          : Center(
+                              child: Text(
+                              getTranslated(
+                                  'please_enter_your_number_to', context)!,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayMedium!
+                                  .copyWith(
+                                      color:
+                                          ColorResources.getHintColor(context)),
+                            )),
                       Padding(
-                        padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
+                        padding:
+                            const EdgeInsets.all(Dimensions.paddingSizeLarge),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: 80),
-                            Text(configModel.phoneVerification!
-                                ?  getTranslated('mobile_number', context)! : getTranslated('email', context)!,
-                              style: Theme.of(context).textTheme.displayMedium!.copyWith(color: ColorResources.getHintColor(context)),
+                            Text(
+                              configModel.phoneVerification!
+                                  ? getTranslated('mobile_number', context)!
+                                  : getTranslated('email', context)!,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayMedium!
+                                  .copyWith(
+                                      color:
+                                          ColorResources.getHintColor(context)),
                             ),
                             const SizedBox(height: Dimensions.paddingSizeSmall),
-
-                            configModel.phoneVerification! ? Row(children: [
-                              CodePickerWidget(
-                                onChanged: (CountryCode countryCode) {
-                                  _countryCode = countryCode.dialCode;
-                                },
-                                initialSelection: _countryCode,
-                                favorite: [_countryCode!],
-                                showDropDownButton: true,
-                                padding: EdgeInsets.zero,
-                                textStyle: TextStyle(color: Theme.of(context).textTheme.displayLarge!.color),
-                                showFlagMain: true,
-                              ),
-
-                              Expanded(child: CustomTextField(
-                                hintText: getTranslated('number_hint', context),
-                                isShowBorder: true,
-                                controller: _phoneNumberController,
-                                inputType: TextInputType.phone,
-                                inputAction: TextInputAction.done,
-                              ),),
-                            ]) : CustomTextField(
-                              hintText: getTranslated('demo_gmail', context),
-                              isShowBorder: true,
-                              controller: _emailController,
-                              inputType: TextInputType.emailAddress,
-                              inputAction: TextInputAction.done,
-                            ),
+                            configModel.phoneVerification!
+                                ? Row(children: [
+                                    CodePickerWidget(
+                                      onChanged: (CountryCode countryCode) {
+                                        _countryCode = countryCode.dialCode;
+                                      },
+                                      initialSelection: _countryCode,
+                                      favorite: [_countryCode!],
+                                      showDropDownButton: true,
+                                      padding: EdgeInsets.zero,
+                                      textStyle: TextStyle(
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .displayLarge!
+                                              .color),
+                                      showFlagMain: true,
+                                    ),
+                                    Expanded(
+                                      child: CustomTextField(
+                                        hintText: getTranslated(
+                                            'number_hint', context),
+                                        isShowBorder: true,
+                                        controller: _phoneNumberController,
+                                        inputType: TextInputType.phone,
+                                        inputAction: TextInputAction.done,
+                                      ),
+                                    ),
+                                  ])
+                                : CustomTextField(
+                                    hintText:
+                                        getTranslated('demo_gmail', context),
+                                    isShowBorder: true,
+                                    controller: _emailController,
+                                    inputType: TextInputType.emailAddress,
+                                    inputAction: TextInputAction.done,
+                                  ),
                             const SizedBox(height: 24),
+                            !auth.isForgotPasswordLoading &&
+                                    !auth.isPhoneNumberVerificationButtonLoading
+                                ? CustomButton(
+                                    btnTxt: getTranslated('send', context),
+                                    onTap: () async {
+                                      String? phoneOrEmail;
 
-                            !auth.isForgotPasswordLoading && !auth.isPhoneNumberVerificationButtonLoading ? CustomButton(
-                              btnTxt: getTranslated('send', context),
-                              onTap: () async {
-                                String? phoneOrEmail;
+                                      if (configModel.phoneVerification!) {
+                                        if (_phoneNumberController!.text
+                                            .trim()
+                                            .isNotEmpty) {
+                                          phoneOrEmail =
+                                              '$_countryCode${_phoneNumberController!.text.trim()}';
+                                        } else {
+                                          showCustomSnackBar(getTranslated(
+                                              'enter_phone_number', context));
+                                        }
+                                      } else {
+                                        if (_emailController!.text.isEmpty) {
+                                          showCustomSnackBar(getTranslated(
+                                              'enter_email_address', context));
+                                        } else if (EmailChecker.isNotValid(
+                                            _emailController!.text.trim())) {
+                                          showCustomSnackBar(getTranslated(
+                                              'enter_valid_email', context));
+                                        } else {
+                                          phoneOrEmail = _emailController!.text;
+                                        }
+                                      }
 
-                                if(configModel.phoneVerification!) {
-                                  if(_phoneNumberController!.text.trim().isNotEmpty) {
-                                    phoneOrEmail = '$_countryCode${_phoneNumberController!.text.trim()}';
+                                      ResponseModel? response = await auth
+                                          .forgetPassword(
+                                              config: configModel,
+                                              phoneOrEmail: phoneOrEmail!)
+                                          .then((value) async {
+                                        if (value!.isSuccess) {
+                                          RouterHelper.getVerifyRoute(
+                                              'forget-password', phoneOrEmail!,
+                                              countryCode: _countryCode);
+                                        } else {
+                                          showCustomSnackBar(value.message);
+                                        }
+                                      });
 
-                                  }else{
-                                    showCustomSnackBar(getTranslated('enter_phone_number', context));
-                                  }
-
-                                }else{
-                                  if(_emailController!.text.isEmpty) {
-                                    showCustomSnackBar(getTranslated('enter_email_address', context));
-
-                                  }else if (EmailChecker.isNotValid(_emailController!.text.trim())) {
-                                    showCustomSnackBar(getTranslated('enter_valid_email', context));
-
-                                  }else{
-                                    phoneOrEmail = _emailController!.text;
-
-                                  }
-                                }
-
-                                if(phoneOrEmail != null) {
-                                  ResponseModel? response =  await auth.forgetPassword(config: configModel, phoneOrEmail: phoneOrEmail);
-
-                                  if(response != null && response.isSuccess) {
-                                    RouterHelper.getVerifyRoute('forget-password', phoneOrEmail);
-
-                                  }else if(response != null && !response.isSuccess) {
-                                    showCustomSnackBar(response.message);
-
-                                  }
-                                }
-
-                              },
-                            ) : Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor))),
+                                      if (response != null &&
+                                          response.isSuccess) {
+                                        RouterHelper.getVerifyRoute(
+                                            'forget-password', phoneOrEmail);
+                                      } else if (response != null &&
+                                          !response.isSuccess) {
+                                        showCustomSnackBar(response.message);
+                                      }
+                                    },
+                                  )
+                                : Center(
+                                    child: CircularProgressIndicator(
+                                        valueColor: AlwaysStoppedAnimation<
+                                                Color>(
+                                            Theme.of(context).primaryColor))),
                           ],
                         ),
                       ),
@@ -187,8 +254,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               ),
             ),
           )),
-
-          if(ResponsiveHelper.isDesktop(context)) const FooterView()
+          if (ResponsiveHelper.isDesktop(context)) const FooterView()
         ]),
       )),
     );
