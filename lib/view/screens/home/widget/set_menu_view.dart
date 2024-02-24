@@ -127,10 +127,7 @@ class SetMenuView extends StatelessWidget {
                                     ),
                                     const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
-                                    RatingBar(
-                                      rating: setMenu.setMenuList![index].rating!.isNotEmpty ? double.parse(setMenu.setMenuList![index].rating![0].average!) : 0.0,
-                                      size: 12,
-                                    ),
+
                                     const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
                                     Row(

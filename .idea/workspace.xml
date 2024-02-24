@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9a1bb2a7-cab1-4814-a672-0b43267c0554" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/firebase-hosting-merge.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/firebase-hosting-pull-request.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/User_app_and_web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/User_app_and_web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/image/arabic.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/image/arabic.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/language/ku.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/language/ku.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/localization/app_localization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/localization/app_localization.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/theme/dark_theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/theme/dark_theme.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/theme/light_theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/theme/light_theme.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utill/app_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utill/app_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utill/images.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utill/images.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/base/product_shimmer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/base/product_shimmer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/base/product_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/base/product_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/screens/cart/widget/cart_product_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/screens/cart/widget/cart_product_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/screens/home/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/screens/home/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/screens/home/web/widget/product_web_card_shimmer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/screens/home/web/widget/product_web_card_shimmer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/screens/home/web/widget/product_widget_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/screens/home/web/widget/product_widget_web.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/screens/home/web/widget/set_menu_page_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/screens/home/web/widget/set_menu_page_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/screens/home/web/widget/set_menu_view_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/screens/home/web/widget/set_menu_view_web.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/screens/home/widget/cart_bottom_sheet.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/screens/home/widget/cart_bottom_sheet.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/screens/home/widget/set_menu_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/screens/home/widget/set_menu_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/screens/setmenu/set_menu_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/screens/setmenu/set_menu_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/screens/splash/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/screens/splash/splash_screen.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2cQ0GnCfKeRMJ37YaLZ5XFwKM9Q" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "/Users/alexshami/Desktop/bigland/user_app_and_web",
+    "show.migrate.to.gradle.popup": "false"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/language" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9a1bb2a7-cab1-4814-a672-0b43267c0554" name="Changes" comment="" />
+      <created>1708028402053</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708028402053</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -40,7 +40,7 @@ class ProductShimmer extends StatelessWidget {
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
             Container(height: 15, width: double.maxFinite, color: Theme.of(context).shadowColor),
             const SizedBox(height: 5),
-            const RatingBar(rating: 0.0, size: 12),
+              /*const RatingBar(rating: 0.0, size: 12),*/
             const SizedBox(height: 10),
             Container(height: 10, width: 50, color: Theme.of(context).shadowColor),
           ])),

@@ -130,8 +130,7 @@ class ProductWidgetWeb extends StatelessWidget {
                               Text(product.name!, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: ColorResources.getCartTitleColor(context)), maxLines: 2, overflow: TextOverflow.ellipsis,textAlign: TextAlign.center),
                               const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
-                              RatingBar(rating: product.rating!.isNotEmpty ? double.parse(product.rating![0].average!) : 0.0, size: Dimensions.paddingSizeDefault),
-                              const SizedBox(height: Dimensions.paddingSizeExtraSmall),
+
 
                               FittedBox(
                                 child: Row(

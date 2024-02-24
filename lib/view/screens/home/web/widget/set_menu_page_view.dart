@@ -124,8 +124,7 @@ class SetMenuPageView extends StatelessWidget {
                                           Text(name!, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeDefault, color: ColorResources.getCartTitleColor(context)), maxLines: 2, overflow: TextOverflow.ellipsis),
                                           const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
-                                          RatingBar(rating: setMenuProvider.setMenuList![currentIndex0].rating!.isNotEmpty ? double.parse(setMenuProvider.setMenuList![currentIndex0].rating![0].average!) : 0.0, size: Dimensions.paddingSizeDefault),
-                                          const SizedBox(height: Dimensions.paddingSizeExtraSmall),
+
 
                                           FittedBox(
                                             child: Row(

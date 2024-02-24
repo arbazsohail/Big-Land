@@ -17,7 +17,18 @@ class AppLocalization {
   late Map<String, String> _localizedValues;
 
   Future<void> load() async {
-    String jsonStringValues = await rootBundle.loadString('assets/language/${locale.languageCode}.json');
+
+    String jsonStringValues;
+    try{
+      if(locale.countryCode == 'IQ') {
+        jsonStringValues = await rootBundle.loadString('assets/language/ku.json');
+      }else{
+        jsonStringValues = await rootBundle.loadString('assets/language/${locale.languageCode}.json');
+      }
+    }catch(e) {
+      jsonStringValues = await rootBundle.loadString('assets/language/en.json');
+    }
+
     Map<String, dynamic> mappedJson = json.decode(jsonStringValues);
     _localizedValues = mappedJson.map((key, value) => MapEntry(key, value.toString()));
   }

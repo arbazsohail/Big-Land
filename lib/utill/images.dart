@@ -81,6 +81,10 @@ class Images {
 
   // for Icon
   static const String logo = 'assets/image/logo.png';
+  static const String splash = 'assets/image/splash.png';
+  static const String ku = 'assets/image/ku.png';
+
+
   static const String webAppBarLogo = 'web/assets/logo.png';
   static const String marker = 'assets/icon/marker.png';
   static const String myLocation = 'assets/icon/my_location.png';
@@ -112,7 +116,6 @@ class Images {
 
 
   // for Image
-  static const String ku = 'assets/image/ku.png';
   static const String india = 'assets/image/india.png';
   static const String spain = 'assets/image/spain.png';
   static const String arabic = 'assets/image/arabic.png';

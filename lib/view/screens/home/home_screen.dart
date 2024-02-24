@@ -43,11 +43,11 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 
   static Future<void> loadData(bool reload, {bool isFcmUpdate = false}) async {
+    final BannerProvider bannerProvider = Provider.of<BannerProvider>(Get.context!, listen: false);
     final ProductProvider productProvider = Provider.of<ProductProvider>(Get.context!, listen: false);
     final SetMenuProvider setMenuProvider = Provider.of<SetMenuProvider>(Get.context!, listen: false);
     final CategoryProvider categoryProvider = Provider.of<CategoryProvider>(Get.context!, listen: false);
     final SplashProvider splashProvider = Provider.of<SplashProvider>(Get.context!, listen: false);
-    final BannerProvider bannerProvider = Provider.of<BannerProvider>(Get.context!, listen: false);
     final ProfileProvider profileProvider = Provider.of<ProfileProvider>(Get.context!, listen: false);
     final isLogin = Provider.of<AuthProvider>(Get.context!, listen: false).isLoggedIn();
 
@@ -67,9 +67,9 @@ class HomeScreen extends StatefulWidget {
       await splashProvider.getPolicyPage();
     }
     productProvider.seeMoreReturn();
+    await bannerProvider.getBannerList(reload);
     await categoryProvider.getCategoryList(reload);
     await setMenuProvider.getSetMenuList(reload);
-    await bannerProvider.getBannerList(reload);
 
   }
 }
@@ -280,11 +280,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: EdgeInsets.only(top: Dimensions.paddingSizeDefault),
                           child: slider.MainSlider(),
                         ):  const SizedBox(),
-
+                        ResponsiveHelper.isDesktop(context) ?  const SizedBox(): const BannerView(),
                         ResponsiveHelper.isDesktop(context)? const CategoryViewWeb() : const CategoryView(),
                         ResponsiveHelper.isDesktop(context)? const SetMenuViewWeb() :  const SetMenuView(),
 
-                        ResponsiveHelper.isDesktop(context) ?  const SizedBox(): const BannerView(),
 
                       ResponsiveHelper.isDesktop(context) ? Row(
                           mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,

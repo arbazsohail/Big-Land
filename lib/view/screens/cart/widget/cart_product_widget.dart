@@ -139,8 +139,7 @@ class CartProductWidget extends StatelessWidget {
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
                     Text(cart!.product!.name!, style: rubikMedium, maxLines: 2, overflow: TextOverflow.ellipsis),
                     const SizedBox(height: 2),
-                    RatingBar(rating: cart!.product!.rating!.isNotEmpty ? double.parse(cart!.product!.rating![0].average!) : 0.0, size: 12),
-                    const SizedBox(height: 5),
+
                     Row(children: [
                       Flexible(child: CustomDirectionality(child: Text(
                         PriceConverter.convertPrice(cart!.discountedPrice),

@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:ui';
+
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
@@ -57,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Provider.of<SplashProvider>(context, listen: false).initSharedData();
     Provider.of<CartProvider>(context, listen: false).getCartData();
 
-   _route();
+    _route();
 
   }
 
@@ -113,27 +115,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _globalKey,
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Consumer<SplashProvider>(builder: (context, splash, child) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ResponsiveHelper.isWeb() ? FadeInImage.assetNetwork(
-                placeholder: Images.placeholderRectangle, height: 165,
-                image: splash.baseUrls != null ? '${splash.baseUrls!.restaurantImageUrl}/${splash.configModel!.restaurantLogo}' : '',
-                imageErrorBuilder: (c, o, s) => Image.asset(Images.placeholderRectangle, height: 165),
-              ) : Image.asset(Images.logo, height: 150),
-              const SizedBox(height: 30),
-              Text(
-                ResponsiveHelper.isWeb() ? splash.configModel!.restaurantName! : AppConstants.appName,
-                style: rubikBold.copyWith(color: Theme.of(context).primaryColor, fontSize: 30),
-              ),
-            ],
-          );
-        }),
-      ),
+      body: Image.asset(Images.splash ,fit: BoxFit.fill,
+          width: window.physicalSize.width,
+          height: window.physicalSize.height),
+
     );
   }
 }

@@ -106,10 +106,7 @@ class ProductWidget extends StatelessWidget {
                 Expanded(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
                     Text(product.name!, style: rubikMedium.copyWith(fontSize: 12), maxLines: 1, overflow: TextOverflow.ellipsis),
-                    const SizedBox(height: 5),
-                    product.rating != null ? RatingBar(
-                      rating: product.rating!.isNotEmpty ? double.parse(product.rating![0].average!) : 0.0, size: 10,
-                    ) : const SizedBox(),
+
                     const SizedBox(height: 5),
 
                     CustomDirectionality(

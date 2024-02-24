@@ -43,8 +43,7 @@ class ProductWidgetWebShimmer extends StatelessWidget {
                               vertical: Dimensions.paddingSizeExtraSmall),
                           child: Container(height: 15, color: Theme.of(context).shadowColor)
                       ),
-                      const RatingBar(
-                          rating: 0.0, size: Dimensions.paddingSizeDefault),
+
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall, vertical: Dimensions.paddingSizeExtraSmall),
                         child: Row(

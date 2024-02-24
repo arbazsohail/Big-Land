@@ -113,21 +113,9 @@ class AppConstants {
   static const String walletToken = 'wallet_token';
 
   static List<LanguageModel> languages = [
-    LanguageModel(
-        imageUrl: Images.unitedKingdom,
-        languageName: 'English',
-        countryCode: 'US',
-        languageCode: 'en'),
-    LanguageModel(
-        imageUrl: Images.arabic,
-        languageName: 'Arabic',
-        countryCode: 'SA',
-        languageCode: 'ar'),
-    LanguageModel(
-        imageUrl: Images.ku,
-        languageName: 'Kurdish',
-        countryCode: 'IQ',
-        languageCode: 'ku'),
+    LanguageModel(imageUrl: Images.unitedKingdom, languageName: 'English', countryCode: 'US', languageCode: 'en'),
+    LanguageModel(imageUrl: Images.arabic, languageName: 'عربى', countryCode: 'SA', languageCode: 'ar'),
+    LanguageModel(imageUrl: Images.ku, languageName: 'كوردى', countryCode: 'IQ', languageCode: 'ar'),
   ];
 
   static const int balanceInputLen = 10;

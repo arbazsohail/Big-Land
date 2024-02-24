@@ -558,13 +558,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
 
             ],
           ),
-          const SizedBox(height: 10),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              RatingBar(rating: widget.product!.rating!.isNotEmpty ? double.parse(widget.product!.rating![0].average!) : 0.0, size: 15),
-              widget.product!.productType != null ? VegTagView(product: widget.product) : const SizedBox(),
-            ],
-          ),
+
           const SizedBox(height: 20),
 
           Row( mainAxisSize: MainAxisSize.min, children: [
