@@ -45,137 +45,118 @@ class _SetCategoryMenuScreenState extends State<SetCategoryMenuScreen> {
                         child: SingleChildScrollView(
                           child: Center(
                             child: SizedBox(
-                              width: 1170,
-                              child: category.categoryList != null
-                                  ? category.categoryList!.isNotEmpty
-                                      ? GridView.builder(
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
-                                          shrinkWrap: true,
-                                          itemCount:
-                                              category.categoryList!.length,
-                                          padding: const EdgeInsets.all(
-                                              Dimensions.paddingSizeSmall),
-                                          gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
-                                                  crossAxisSpacing: 13,
-                                                  mainAxisSpacing: 13,
-                                                  childAspectRatio: 1 / 1.2,
-                                                  crossAxisCount:
-                                                      ResponsiveHelper
-                                                              .isDesktop(
+                                width: 1170,
+                                child: GridView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: category.categoryList!.length,
+                                  padding: const EdgeInsets.all(
+                                      Dimensions.paddingSizeSmall),
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisSpacing: 13,
+                                          mainAxisSpacing: 13,
+                                          childAspectRatio: 1 / 1.3,
+                                          crossAxisCount: ResponsiveHelper
+                                                  .isDesktop(context)
+                                              ? 6
+                                              : ResponsiveHelper.isTab(context)
+                                                  ? 4
+                                                  : 2),
+                                  itemBuilder: (context, index) {
+                                    String? name = '';
+                                    category.categoryList![index].name!.length >
+                                            15
+                                        ? name =
+                                            '${category.categoryList![index].name!.substring(0, 15)} ...'
+                                        : name =
+                                            category.categoryList![index].name;
+                                    return Padding(
+                                      padding: const EdgeInsets.only(top: 18.0),
+                                      child: InkWell(
+                                        onTap: () =>
+                                            RouterHelper.getCategoryRoute(
+                                                category.categoryList![index]),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              color:
+                                                  Theme.of(context).cardColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey[
+                                                      Provider.of<ThemeProvider>(
                                                                   context)
-                                                          ? 6
-                                                          : ResponsiveHelper
-                                                                  .isTab(
-                                                                      context)
-                                                              ? 4
-                                                              : 2),
-                                          itemBuilder: (context, index) {
-                                            String? name = '';
-                                            category.categoryList![index].name!
-                                                        .length >
-                                                    15
-                                                ? name =
-                                                    '${category.categoryList![index].name!.substring(0, 15)} ...'
-                                                : name = category
-                                                    .categoryList![index].name;
-                                            return Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 18.0),
-                                              child: InkWell(
-                                                onTap: () => RouterHelper
-                                                    .getCategoryRoute(category
-                                                        .categoryList![index]),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                      color: Theme.of(context)
-                                                          .cardColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          color: Colors
-                                                              .grey[Provider.of<
-                                                                          ThemeProvider>(
-                                                                      context)
-                                                                  .darkTheme
-                                                              ? 900
-                                                              : 300]!,
-                                                          blurRadius:
-                                                              Provider.of<ThemeProvider>(
-                                                                          context)
-                                                                      .darkTheme
-                                                                  ? 2
-                                                                  : 5,
-                                                          spreadRadius:
-                                                              Provider.of<ThemeProvider>(
-                                                                          context)
-                                                                      .darkTheme
-                                                                  ? 0
-                                                                  : 1,
-                                                        )
-                                                      ]),
-                                                  child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        ClipOval(
-                                                          child: FadeInImage
-                                                              .assetNetwork(
-                                                            placeholder: Images
+                                                              .darkTheme
+                                                          ? 900
+                                                          : 300]!,
+                                                  blurRadius:
+                                                      Provider.of<ThemeProvider>(
+                                                                  context)
+                                                              .darkTheme
+                                                          ? 2
+                                                          : 5,
+                                                  spreadRadius:
+                                                      Provider.of<ThemeProvider>(
+                                                                  context)
+                                                              .darkTheme
+                                                          ? 0
+                                                          : 1,
+                                                )
+                                              ]),
+                                          child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                ClipOval(
+                                                  child:
+                                                      FadeInImage.assetNetwork(
+                                                    placeholder:
+                                                        Images.placeholderImage,
+                                                    width: 150,
+                                                    // height: 65,
+                                                    fit: BoxFit.cover,
+                                                    image: Provider.of<SplashProvider>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .baseUrls !=
+                                                            null
+                                                        ? '${Provider.of<SplashProvider>(context, listen: false).baseUrls!.categoryImageUrl}/${category.categoryList![index].image}'
+                                                        : '',
+                                                    imageErrorBuilder: (c, o,
+                                                            s) =>
+                                                        Image.asset(
+                                                            Images
                                                                 .placeholderImage,
-                                                            width: 150,
-                                                            // height: 65,
-                                                            fit: BoxFit.cover,
-                                                            image: Provider.of<SplashProvider>(
-                                                                            context,
-                                                                            listen:
-                                                                                false)
-                                                                        .baseUrls !=
-                                                                    null
-                                                                ? '${Provider.of<SplashProvider>(context, listen: false).baseUrls!.categoryImageUrl}/${category.categoryList![index].image}'
-                                                                : '',
-                                                            imageErrorBuilder: (c,
-                                                                    o, s) =>
-                                                                Image.asset(
-                                                                    Images
-                                                                        .placeholderImage,
-                                                                    width: 50,
-                                                                    height: 50,
-                                                                    fit: BoxFit
-                                                                        .cover),
-                                                            // width: 100, height: 100, fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                        Flexible(
-                                                          child: Text(
-                                                            name!,
-                                                            style: rubikMedium
-                                                                .copyWith(
-                                                                    fontSize:
-                                                                        Dimensions
-                                                                            .fontSizeLarge),
-                                                            maxLines: 2,
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                          ),
-                                                        ),
-                                                      ]),
+                                                            width: 50,
+                                                            height: 50,
+                                                            fit: BoxFit.cover),
+                                                    // width: 100, height: 100, fit: BoxFit.cover,
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        )
-                                      : Center(
-                                          child: Text(getTranslated(
-                                              'no_category_available',
-                                              context)!))
-                                  : const CategoryShimmerGridView(),
-                            ),
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .only(
+                                                      top: Dimensions
+                                                          .paddingSizeDefault),
+                                                  child: Text(
+                                                    name!,
+                                                    style: rubikMedium.copyWith(
+                                                        fontSize: Dimensions
+                                                            .fontSizeLarge),
+                                                    maxLines: 2,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ),
+                                              ]),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                )),
                           ),
                         ),
                       ))
@@ -186,52 +167,6 @@ class _SetCategoryMenuScreenState extends State<SetCategoryMenuScreen> {
                           Theme.of(context).primaryColor)));
         },
       ),
-    );
-  }
-}
-
-class CategoryShimmerGridView extends StatelessWidget {
-  const CategoryShimmerGridView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: 10,
-      padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisSpacing: 13,
-          mainAxisSpacing: 13,
-          childAspectRatio: 1 / 1.2,
-          crossAxisCount: ResponsiveHelper.isDesktop(context)
-              ? 6
-              : ResponsiveHelper.isTab(context)
-                  ? 4
-                  : 2),
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(right: Dimensions.paddingSizeSmall),
-          child: Shimmer(
-            duration: const Duration(seconds: 2),
-            enabled:
-                Provider.of<CategoryProvider>(context).categoryList == null,
-            child: Column(children: [
-              Container(
-                height: 200,
-                width: 150,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).shadowColor,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Container(
-                  height: 10, width: 50, color: Theme.of(context).shadowColor),
-            ]),
-          ),
-        );
-      },
     );
   }
 }

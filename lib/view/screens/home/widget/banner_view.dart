@@ -6,9 +6,11 @@ import 'package:flutter_restaurant/data/model/response/category_model.dart';
 import 'package:flutter_restaurant/data/model/response/product_model.dart';
 import 'package:flutter_restaurant/helper/responsive_helper.dart';
 import 'package:flutter_restaurant/localization/language_constrants.dart';
+import 'package:flutter_restaurant/main.dart';
 import 'package:flutter_restaurant/provider/banner_provider.dart';
 import 'package:flutter_restaurant/provider/cart_provider.dart';
 import 'package:flutter_restaurant/provider/category_provider.dart';
+import 'package:flutter_restaurant/provider/discount_provider.dart';
 import 'package:flutter_restaurant/provider/splash_provider.dart';
 import 'package:flutter_restaurant/provider/theme_provider.dart';
 import 'package:flutter_restaurant/utill/dimensions.dart';
@@ -67,11 +69,19 @@ class _BannerViewState extends State<BannerView> {
 
   @override
   Widget build(BuildContext context) {
+    final DiscountProvider discountProvider =
+        Provider.of<DiscountProvider>(Get.context!, listen: false);
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
-          child: TitleWidget(title: getTranslated('banner', context)),
+          child: InkWell(
+              onTap: () async {
+                print("last");
+                var a = await discountProvider.getDiscountMenu(true, '1');
+                print("fun  " + a.toString());
+              },
+              child: TitleWidget(title: getTranslated('banner', context))),
         ),
         SizedBox(
           height: 200,

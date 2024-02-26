@@ -5,6 +5,7 @@ import 'package:flutter_restaurant/data/repository/cart_repo.dart';
 import 'package:flutter_restaurant/data/repository/category_repo.dart';
 import 'package:flutter_restaurant/data/repository/chat_repo.dart';
 import 'package:flutter_restaurant/data/repository/coupon_repo.dart';
+import 'package:flutter_restaurant/data/repository/discount_repo.dart';
 import 'package:flutter_restaurant/data/repository/location_repo.dart';
 import 'package:flutter_restaurant/data/repository/notification_repo.dart';
 import 'package:flutter_restaurant/data/repository/order_repo.dart';
@@ -24,6 +25,7 @@ import 'package:flutter_restaurant/provider/cart_provider.dart';
 import 'package:flutter_restaurant/provider/category_provider.dart';
 import 'package:flutter_restaurant/provider/chat_provider.dart';
 import 'package:flutter_restaurant/provider/coupon_provider.dart';
+import 'package:flutter_restaurant/provider/discount_provider.dart';
 import 'package:flutter_restaurant/provider/localization_provider.dart';
 import 'package:flutter_restaurant/provider/news_letter_controller.dart';
 import 'package:flutter_restaurant/provider/notification_provider.dart';
@@ -59,6 +61,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => CategoryRepo(dioClient: sl()));
   sl.registerLazySingleton(() => BannerRepo(dioClient: sl()));
   sl.registerLazySingleton(() => ProductRepo(dioClient: sl()));
+  sl.registerLazySingleton(() => DiscountRepo(dioClient: sl()));
   sl.registerLazySingleton(() => LanguageRepo());
   sl.registerLazySingleton(() => OnBoardingRepo(dioClient: sl()));
   sl.registerLazySingleton(() => CartRepo(sharedPreferences: sl()));
@@ -84,6 +87,8 @@ Future<void> init() async {
   sl.registerFactory(() => CategoryProvider(categoryRepo: sl()));
   sl.registerFactory(() => BannerProvider(bannerRepo: sl()));
   sl.registerFactory(() => ProductProvider(productRepo: sl()));
+  sl.registerFactory(() => DiscountProvider(discountRepo: sl()));
+
   sl.registerFactory(() => CartProvider(cartRepo: sl()));
   sl.registerFactory(() => OrderProvider(orderRepo: sl(), sharedPreferences: sl()));
   sl.registerFactory(() => ChatProvider(chatRepo: sl(), notificationRepo: sl()));

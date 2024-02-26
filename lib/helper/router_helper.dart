@@ -30,6 +30,7 @@ import 'package:flutter_restaurant/view/screens/dashboard/dashboard_screen.dart'
 import 'package:flutter_restaurant/view/screens/forgot_password/create_new_password_screen.dart';
 import 'package:flutter_restaurant/view/screens/forgot_password/forgot_password_screen.dart';
 import 'package:flutter_restaurant/view/screens/forgot_password/verification_screen.dart';
+import 'package:flutter_restaurant/view/screens/home/discounts/discounts_menu.dart';
 import 'package:flutter_restaurant/view/screens/home/widget/image_screen.dart';
 import 'package:flutter_restaurant/view/screens/html/html_viewer_screen.dart';
 import 'package:flutter_restaurant/view/screens/language/choose_language_screen.dart';
@@ -99,6 +100,7 @@ class RouterHelper {
   static const String homeScreen = '/home';
   static const String orderWebPayment = '/order-web-payment';
   static const String popularItemRoute = '/POPULAR_ITEM_ROUTE';
+  static const String discountMenuScreen = '/discountMenuScreen';
   static const String returnPolicyScreen = '/return-policy';
   static const String refundPolicyScreen = '/refund-policy';
   static const String cancellationPolicyScreen = '/cancellation-policy';
@@ -228,6 +230,7 @@ class RouterHelper {
   static String getPolicyRoute() => _navigateRoute(policyScreen);
   static String getAboutUsRoute() => _navigateRoute(aboutUsScreen);
   static String getPopularItemScreen() => _navigateRoute(popularItemRoute);
+  static String getDiscountMenuScreen() => _navigateRoute(discountMenuScreen);
   static String getReturnPolicyRoute() => _navigateRoute(returnPolicyScreen);
   static String getCancellationPolicyRoute() =>
       _navigateRoute(cancellationPolicyScreen);
@@ -580,6 +583,11 @@ class RouterHelper {
           path: popularItemRoute,
           builder: (context, state) => _routeHandler(
               context, const PopularItemScreen(),
+              isBranchCheck: true)),
+      GoRoute(
+          path: discountMenuScreen,
+          builder: (context, state) => _routeHandler(
+              context, const DiscountsMenuScreen(),
               isBranchCheck: true)),
       GoRoute(
           path: wallet,

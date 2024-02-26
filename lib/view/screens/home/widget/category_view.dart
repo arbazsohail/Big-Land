@@ -22,7 +22,7 @@ class CategoryView extends StatelessWidget {
         return Column(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(10, 20, 0, 10),
+              padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
               child: TitleWidget(
                 title: getTranslated('all_categories', context),
                 onTap: () {

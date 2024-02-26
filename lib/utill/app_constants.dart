@@ -11,6 +11,7 @@ class AppConstants {
   static const String bannerUri = '/api/v1/banners';
   static const String latestProductUri = '/api/v1/products/latest';
   static const String popularProductUri = '/api/v1/products/popular';
+  static const String discountMenuUri = '/api/v1/products/discount-menu';
   static const String searchProductUri = '/api/v1/products/details/';
   static const String subCategoryUri = '/api/v1/categories/childes/';
   static const String categoryProductUri = '/api/v1/categories/products/';
@@ -113,9 +114,21 @@ class AppConstants {
   static const String walletToken = 'wallet_token';
 
   static List<LanguageModel> languages = [
-    LanguageModel(imageUrl: Images.unitedKingdom, languageName: 'English', countryCode: 'US', languageCode: 'en'),
-    LanguageModel(imageUrl: Images.arabic, languageName: 'عربى', countryCode: 'SA', languageCode: 'ar'),
-    LanguageModel(imageUrl: Images.ku, languageName: 'كوردى', countryCode: 'IQ', languageCode: 'ar'),
+    LanguageModel(
+        imageUrl: Images.unitedKingdom,
+        languageName: 'English',
+        countryCode: 'US',
+        languageCode: 'en'),
+    LanguageModel(
+        imageUrl: Images.arabic,
+        languageName: 'عربى',
+        countryCode: 'SA',
+        languageCode: 'ar'),
+    LanguageModel(
+        imageUrl: Images.ku,
+        languageName: 'كوردى',
+        countryCode: 'IQ',
+        languageCode: 'ar'),
   ];
 
   static const int balanceInputLen = 10;
