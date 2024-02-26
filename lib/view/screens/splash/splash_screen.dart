@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
 
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -37,19 +36,27 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     bool firstTime = true;
-    _onConnectivityChanged = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      if(!firstTime) {
-        bool isNotConnected = result != ConnectivityResult.wifi && result != ConnectivityResult.mobile;
-        isNotConnected ? const SizedBox() : _globalKey.currentState?.hideCurrentSnackBar();
+    _onConnectivityChanged = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      if (!firstTime) {
+        bool isNotConnected = result != ConnectivityResult.wifi &&
+            result != ConnectivityResult.mobile;
+        isNotConnected
+            ? const SizedBox()
+            : _globalKey.currentState?.hideCurrentSnackBar();
         _globalKey.currentState?.showSnackBar(SnackBar(
           backgroundColor: isNotConnected ? Colors.red : Colors.green,
           duration: Duration(seconds: isNotConnected ? 6000 : 3),
           content: Text(
-            isNotConnected ? getTranslated('no_internet_connection', _globalKey.currentContext!)! : getTranslated('connected', _globalKey.currentContext!)!,
+            isNotConnected
+                ? getTranslated(
+                    'no_internet_connection', _globalKey.currentContext!)!
+                : getTranslated('connected', _globalKey.currentContext!)!,
             textAlign: TextAlign.center,
           ),
         ));
-        if(!isNotConnected) {
+        if (!isNotConnected) {
           _route();
         }
       }
@@ -60,7 +67,6 @@ class _SplashScreenState extends State<SplashScreen> {
     Provider.of<CartProvider>(context, listen: false).getCartData();
 
     _route();
-
   }
 
   @override
@@ -71,7 +77,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _route() {
-    final SplashProvider splashProvider = Provider.of<SplashProvider>(context, listen: false);
+    final SplashProvider splashProvider =
+        Provider.of<SplashProvider>(context, listen: false);
     splashProvider.initConfig(context).then((bool isSuccess) {
       if (isSuccess) {
         Timer(const Duration(seconds: 1), () async {
@@ -79,35 +86,47 @@ class _SplashScreenState extends State<SplashScreen> {
           double? minimumVersion;
 
           //
-          if(defaultTargetPlatform == TargetPlatform.android  && config.playStoreConfig != null) {
+          if (defaultTargetPlatform == TargetPlatform.android &&
+              config.playStoreConfig != null) {
             minimumVersion = config.playStoreConfig!.minVersion;
-
-          }else if(defaultTargetPlatform == TargetPlatform.iOS  &&  config.appStoreConfig != null) {
+          } else if (defaultTargetPlatform == TargetPlatform.iOS &&
+              config.appStoreConfig != null) {
             minimumVersion = config.appStoreConfig!.minVersion;
           }
 
-          if(config.maintenanceMode!) {
-            RouterHelper.getMaintainRoute(action: RouteAction.pushNamedAndRemoveUntil);
-
-          }else if(Version.parse('$minimumVersion') > Version.parse(AppConstants.appVersion)) {
-            RouterHelper.getUpdateRoute(action: RouteAction.pushNamedAndRemoveUntil);
-          }else if (Provider.of<AuthProvider>(Get.context!, listen: false).isLoggedIn()) {
-            Provider.of<AuthProvider>(Get.context!, listen: false).updateToken();
-            RouterHelper.getMainRoute(action: RouteAction.pushNamedAndRemoveUntil);
+          if (config.maintenanceMode!) {
+            RouterHelper.getMaintainRoute(
+                action: RouteAction.pushNamedAndRemoveUntil);
+          } else if (Version.parse('$minimumVersion') >
+              Version.parse(AppConstants.appVersion)) {
+            RouterHelper.getUpdateRoute(
+                action: RouteAction.pushNamedAndRemoveUntil);
+          } else if (Provider.of<AuthProvider>(Get.context!, listen: false)
+              .isLoggedIn()) {
+            Provider.of<AuthProvider>(Get.context!, listen: false)
+                .updateToken();
+            RouterHelper.getMainRoute(
+                action: RouteAction.pushNamedAndRemoveUntil);
           } else {
-            if(widget.routeTo != null){
+            if (widget.routeTo != null) {
               context.pushReplacement(widget.routeTo!);
-            }else{
-              ResponsiveHelper.isMobile() && Provider.of<OnBoardingProvider>(Get.context!, listen: false).showOnBoardingStatus
-                  ? RouterHelper.getLanguageRoute(false, action: RouteAction.pushNamedAndRemoveUntil) : Provider.of<BranchProvider>(Get.context!, listen: false).getBranchId() != -1
-                  ? RouterHelper.getMainRoute(action: RouteAction.pushNamedAndRemoveUntil) : RouterHelper.getBranchListScreen(action: RouteAction.pushNamedAndRemoveUntil);
-
+            } else {
+              ResponsiveHelper.isMobile() &&
+                      Provider.of<OnBoardingProvider>(Get.context!,
+                              listen: false)
+                          .showOnBoardingStatus
+                  ? RouterHelper.getLanguageRoute(false,
+                      action: RouteAction.pushNamedAndRemoveUntil)
+                  : Provider.of<BranchProvider>(Get.context!, listen: false)
+                              .getBranchId() !=
+                          -1
+                      ? RouterHelper.getMainRoute(
+                          action: RouteAction.pushNamedAndRemoveUntil)
+                      : RouterHelper.getBranchListScreen(
+                          action: RouteAction.pushNamedAndRemoveUntil);
             }
           }
-
-        }
-
-        );
+        });
       }
     });
   }
@@ -115,10 +134,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Image.asset(Images.splash ,fit: BoxFit.fill,
+      body: Image.asset(Images.splash,
+          fit: BoxFit.fill,
           width: window.physicalSize.width,
           height: window.physicalSize.height),
-
     );
   }
 }

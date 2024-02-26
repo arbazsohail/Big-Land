@@ -396,33 +396,42 @@ class _HomeScreenState extends State<HomeScreen> {
                         ResponsiveHelper.isDesktop(context)
                             ? const SizedBox()
                             : const BannerView(),
-                        ResponsiveHelper.isDesktop(context)
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                                    child: Text(
-                                        getTranslated('popular_item', context)!,
-                                        style: rubikRegular.copyWith(
-                                            fontSize:
-                                                Dimensions.fontSizeOverLarge)),
-                                  ),
-                                ],
-                              )
-                            : Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 20, 10, 10),
-                                child: TitleWidget(
-                                  title: getTranslated('discount', context),
-                                  onTap: () {
-                                    RouterHelper.getDiscountMenuScreen();
-                                  },
-                                ),
-                              ),
-                        const DiscountHomeViewWidegt(),
+                        Provider.of<DiscountProvider>(context)
+                                .discountMenuList!
+                                .isNotEmpty
+                            ? ResponsiveHelper.isDesktop(context)
+                                ? Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 20, 0, 20),
+                                        child: Text(
+                                            getTranslated('discount', context)!,
+                                            style: rubikRegular.copyWith(
+                                                fontSize: Dimensions
+                                                    .fontSizeOverLarge)),
+                                      ),
+                                    ],
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        10, 20, 10, 10),
+                                    child: TitleWidget(
+                                      title: getTranslated('discount', context),
+                                      onTap: () {
+                                        RouterHelper.getDiscountMenuScreen();
+                                      },
+                                    ),
+                                  )
+                            : const SizedBox(),
+                        Provider.of<DiscountProvider>(context)
+                                .discountMenuList!
+                                .isNotEmpty
+                            ? const DiscountHomeViewWidegt()
+                            : const SizedBox(),
                         ResponsiveHelper.isDesktop(context)
                             ? const CategoryViewWeb()
                             : const CategoryView(),
