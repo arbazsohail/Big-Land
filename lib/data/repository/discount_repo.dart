@@ -11,7 +11,7 @@ class DiscountRepo {
   Future<ApiResponse> getDiscountMenu(String offset) async {
     try {
       final response = await dioClient!.get(
-        '${AppConstants.discountMenuUri}?limit=12&&offset=$offset',
+        '${AppConstants.discountMenuUri}?limit=10&&offset=$offset',
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {

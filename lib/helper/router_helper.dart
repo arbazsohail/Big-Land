@@ -339,7 +339,6 @@ class RouterHelper {
                     state.uri.queryParameters['email_or_phone'] ?? ''),
                 resetToken: state.uri.queryParameters['token'],
                 countryCode: state.uri.queryParameters['countryCode'],
-                //arbaz
               ))),
       GoRoute(
           path: createAccountScreen,

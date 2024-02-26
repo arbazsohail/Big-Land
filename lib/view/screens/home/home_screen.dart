@@ -26,6 +26,7 @@ import 'package:flutter_restaurant/view/base/branch_button_view.dart';
 import 'package:flutter_restaurant/view/base/footer_view.dart';
 import 'package:flutter_restaurant/view/base/title_widget.dart';
 import 'package:flutter_restaurant/view/base/web_app_bar.dart';
+import 'package:flutter_restaurant/view/screens/home/discounts/discount_home_view.dart';
 import 'package:flutter_restaurant/view/screens/home/discounts/discounts_menu.dart';
 import 'package:flutter_restaurant/view/screens/home/web/widget/category_web_view.dart';
 import 'package:flutter_restaurant/view/screens/home/web/widget/set_menu_view_web.dart';
@@ -81,7 +82,7 @@ class HomeScreen extends StatefulWidget {
       await splashProvider.getPolicyPage();
     }
     productProvider.seeMoreReturn();
-    await bannerProvider.getBannerList(reload);
+
     await categoryProvider.getCategoryList(reload);
     await setMenuProvider.getSetMenuList(reload);
     await discountProvider.getDiscountMenu(reload, '1');
@@ -421,9 +422,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                 ),
                               ),
-                        const ProductView(
-                          productType: ProductType.popularProduct,
-                        ),
+                        const DiscountHomeViewWidegt(),
                         ResponsiveHelper.isDesktop(context)
                             ? const CategoryViewWeb()
                             : const CategoryView(),

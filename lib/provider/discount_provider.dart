@@ -19,7 +19,7 @@ class DiscountProvider extends ChangeNotifier {
   int discountOffset = 1;
   List<String> _offsetList = [];
   Future<bool> getDiscountMenu(bool reload, String offset,
-      {String type = 'all', bool isUpdate = false}) async {
+      {bool isUpdate = false}) async {
     bool apiSuccess = false;
     if (reload || offset == '1') {
       discountOffset = 1;
@@ -30,6 +30,7 @@ class DiscountProvider extends ChangeNotifier {
     }
 
     if (!_offsetList.contains(offset)) {
+      print(offset + "valueee");
       _offsetList = [];
       _offsetList.add(offset);
       ApiResponse apiResponse = await discountRepo!.getDiscountMenu(offset);

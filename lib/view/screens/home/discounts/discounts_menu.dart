@@ -35,7 +35,7 @@ class _DiscountsMenuScreenState extends State<DiscountsMenuScreen> {
   Widget build(BuildContext context) {
     final discountProvider =
         Provider.of<DiscountProvider>(context, listen: false);
-    _scrollController.addListener(() {
+    _scrollController.addListener(() async {
       if (_scrollController.position.pixels ==
               _scrollController.position.maxScrollExtent &&
           (discountProvider.discountMenuList != null) &&
@@ -45,6 +45,8 @@ class _DiscountsMenuScreenState extends State<DiscountsMenuScreen> {
         if (discountProvider.discountOffset < pageSize) {
           discountProvider.discountOffset++;
           discountProvider.showBottomLoader();
+          await discountProvider.getDiscountMenu(
+              false, discountProvider.discountOffset.toString());
         }
       }
     });
@@ -59,7 +61,6 @@ class _DiscountsMenuScreenState extends State<DiscountsMenuScreen> {
                   ? discount.discountMenuList!.isNotEmpty
                       ? RefreshIndicator(
                           onRefresh: () async {
-                            _type = 'all';
                             await Provider.of<DiscountProvider>(context,
                                     listen: false)
                                 .getDiscountMenu(true, '1');

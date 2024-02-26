@@ -20,11 +20,15 @@ class _CategoryViewWebState extends State<CategoryViewWeb> {
   final PageController pageController = PageController();
 
   void _nextPage() {
-    pageController.nextPage(duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+    pageController.nextPage(
+        duration: const Duration(seconds: 1), curve: Curves.easeInOut);
   }
+
   void _previousPage() {
-    pageController.previousPage(duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+    pageController.previousPage(
+        duration: const Duration(seconds: 1), curve: Curves.easeInOut);
   }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<CategoryProvider>(
@@ -37,7 +41,9 @@ class _CategoryViewWebState extends State<CategoryViewWeb> {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: Text(getTranslated('all_categories', context)!, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeOverLarge)),
+                  child: Text(getTranslated('all_categories', context)!,
+                      style: rubikRegular.copyWith(
+                          fontSize: Dimensions.fontSizeOverLarge)),
                 ),
               ],
             ),
@@ -50,25 +56,58 @@ class _CategoryViewWebState extends State<CategoryViewWeb> {
                       Expanded(
                         child: SizedBox(
                           height: 160,
-                          child: category.categoryList != null ? category.categoryList!.isNotEmpty ?
-                          CategoryPageView(categoryProvider: category, pageController: pageController)
-                              : Center(child: Text(getTranslated('no_category_available', context)!)) : const CategoryShimmer(),
+                          child: category.categoryList != null
+                              ? category.categoryList!.isNotEmpty
+                                  ? CategoryPageView(
+                                      categoryProvider: category,
+                                      pageController: pageController)
+                                  : Center(
+                                      child: Text(getTranslated(
+                                          'no_category_available', context)!))
+                              : const CategoryShimmer(),
                         ),
                       ),
                     ],
                   ),
                 ),
-                if(category.categoryList != null) Positioned.fill( child: Align(alignment: Provider.of<LocalizationProvider>(context).isLtr ? Alignment.centerLeft : Alignment.centerRight, child: Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: ArrayButton(isLeft: true, isLarge: true, onTop: _previousPage, isVisible: !category.pageFirstIndex && (category.categoryList != null ? category.categoryList!.length > 7 : false)),
-                ))),
-               if(category.categoryList != null) Positioned.fill(child: Align(alignment: Provider.of<LocalizationProvider>(context).isLtr ? Alignment.centerRight : Alignment.centerLeft, child: Padding(
-                 padding: const EdgeInsets.only(bottom: 16),
-                 child: ArrayButton(isLeft: false, isLarge: true, onTop: _nextPage, isVisible:  !category.pageLastIndex && (category.categoryList != null ? category.categoryList!.length > 7 : false)),
-               ))),
+                if (category.categoryList != null)
+                  Positioned.fill(
+                      child: Align(
+                          alignment:
+                              Provider.of<LocalizationProvider>(context).isLtr
+                                  ? Alignment.centerLeft
+                                  : Alignment.centerRight,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: ArrayButton(
+                                isLeft: true,
+                                isLarge: true,
+                                onTop: _previousPage,
+                                isVisible: !category.pageFirstIndex &&
+                                    (category.categoryList != null
+                                        ? category.categoryList!.length > 7
+                                        : false)),
+                          ))),
+                if (category.categoryList != null)
+                  Positioned.fill(
+                      child: Align(
+                          alignment:
+                              Provider.of<LocalizationProvider>(context).isLtr
+                                  ? Alignment.centerRight
+                                  : Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: ArrayButton(
+                                isLeft: false,
+                                isLarge: true,
+                                onTop: _nextPage,
+                                isVisible: !category.pageLastIndex &&
+                                    (category.categoryList != null
+                                        ? category.categoryList!.length > 7
+                                        : false)),
+                          ))),
               ],
             ),
-
           ],
         );
       },
@@ -94,17 +133,22 @@ class CategoryShimmer extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Shimmer(
               duration: const Duration(seconds: 2),
-              enabled: Provider.of<CategoryProvider>(context).categoryList == null,
+              enabled:
+                  Provider.of<CategoryProvider>(context).categoryList == null,
               child: Column(children: [
                 Container(
-                  height: 125, width: 125,
+                  height: 125,
+                  width: 125,
                   decoration: BoxDecoration(
                     color: Theme.of(context).shadowColor,
                     shape: BoxShape.circle,
                   ),
                 ),
                 const SizedBox(height: 5),
-                Container(height: 10, width: 50, color: Theme.of(context).shadowColor),
+                Container(
+                    height: 10,
+                    width: 50,
+                    color: Theme.of(context).shadowColor),
               ]),
             ),
           );
@@ -128,18 +172,19 @@ class CategoryAllShimmer extends StatelessWidget {
           enabled: Provider.of<CategoryProvider>(context).categoryList == null,
           child: Column(children: [
             Container(
-              height: 65, width: 65,
+              height: 65,
+              width: 65,
               decoration: BoxDecoration(
                 color: Theme.of(context).shadowColor,
                 shape: BoxShape.circle,
               ),
             ),
             const SizedBox(height: 5),
-            Container(height: 10, width: 50, color: Theme.of(context).shadowColor),
+            Container(
+                height: 10, width: 50, color: Theme.of(context).shadowColor),
           ]),
         ),
       ),
     );
   }
 }
-
