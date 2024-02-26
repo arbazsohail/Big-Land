@@ -44,6 +44,7 @@ import 'package:flutter_restaurant/view/screens/rate_review/rate_review_screen.d
 import 'package:flutter_restaurant/view/screens/refer_and_earn/refer_and_earn_screen.dart';
 import 'package:flutter_restaurant/view/screens/search/search_result_screen.dart';
 import 'package:flutter_restaurant/view/screens/search/search_screen.dart';
+import 'package:flutter_restaurant/view/screens/setcategorymenu/set_category_menu.dart';
 import 'package:flutter_restaurant/view/screens/setmenu/set_menu_screen.dart';
 import 'package:flutter_restaurant/view/screens/splash/splash_screen.dart';
 import 'package:flutter_restaurant/view/screens/support/support_screen.dart';
@@ -74,6 +75,7 @@ class RouterHelper {
   static const String searchResultScreen = '/search-result';
   static const String setMenuScreen = '/set-menu';
   static const String categoryScreen = '/category';
+  static const String setcategoryMenuScreen = '/category-menu';
   static const String notificationScreen = '/notification';
   static const String checkoutScreen = '/checkout';
   static const String paymentScreen = '/payment';
@@ -160,6 +162,7 @@ class RouterHelper {
   }
 
   static String getSetMenuRoute() => _navigateRoute(setMenuScreen);
+  static String getSetCategoryRoute() => _navigateRoute(setcategoryMenuScreen);
   static String getNotificationRoute() => _navigateRoute(notificationScreen);
   static String getCategoryRoute(CategoryModel categoryModel,
       {RouteAction? action}) {
@@ -390,6 +393,11 @@ class RouterHelper {
           path: setMenuScreen,
           builder: (context, state) => _routeHandler(
               context, const SetMenuScreen(),
+              isBranchCheck: true)),
+      GoRoute(
+          path: setcategoryMenuScreen,
+          builder: (context, state) => _routeHandler(
+              context, const SetCategoryMenuScreen(),
               isBranchCheck: true)),
       GoRoute(
           path: categoryScreen,
