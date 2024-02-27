@@ -211,6 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Scrollbar _scrollView(
       ScrollController scrollController, BuildContext context) {
+    var discountList = Provider.of<DiscountProvider>(context).discountMenuList;
     return Scrollbar(
       controller: scrollController,
       child: CustomScrollView(controller: scrollController, slivers: [
@@ -396,9 +397,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ResponsiveHelper.isDesktop(context)
                             ? const SizedBox()
                             : const BannerView(),
-                        Provider.of<DiscountProvider>(context)
-                                .discountMenuList!
-                                .isNotEmpty
+                        // ignore: prefer_is_empty
+                        (discountList?.isNotEmpty ?? false)
                             ? ResponsiveHelper.isDesktop(context)
                                 ? Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -427,9 +427,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   )
                             : const SizedBox(),
-                        Provider.of<DiscountProvider>(context)
-                                .discountMenuList!
-                                .isNotEmpty
+                        // ignore: prefer_is_empty
+                        (discountList?.isNotEmpty ?? false)
                             ? const DiscountHomeViewWidegt()
                             : const SizedBox(),
                         ResponsiveHelper.isDesktop(context)
